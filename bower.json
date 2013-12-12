@@ -1,0 +1,23 @@
+{
+  "name": "yandex-tz",
+  "version": "0.1.0",
+  "authors": [
+    "zoh <zoh@bk.ru>"
+  ],
+  "description": "yaMoney tz",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "mocha": "~1.15.1",
+    "chai": "~1.8.1",
+    "bootstrap": "~3.0.3"
+  }
+}

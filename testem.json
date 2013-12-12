@@ -1,0 +1,14 @@
+{
+  "framework": "mocha",
+  "before_tests": "coffee -c ./src/*.coffee  ./test/specs/*.coffee",
+  "src_files": [
+    "src/*.coffee",
+    "test/**/*.coffee"
+  ],
+  "serve_files": [
+    "bower_components/chai/chai.js",
+    "bower_components/jquery/jquery.min.js",
+    "src/*.js",
+    "test/**/*.js"
+  ]
+}

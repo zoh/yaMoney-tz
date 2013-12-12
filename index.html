@@ -1,79 +1,211 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Yamoney-tz : " />
+    <title>Техническое задание ЯндексМани</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./bower_components/jquery/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Yamoney-tz</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
   </head>
-
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/zoh/yaMoney-tz">View on GitHub</a>
+    <div class="container">
 
-          <h1 id="project_title">Yamoney-tz</h1>
-          <h2 id="project_tagline"></h2>
+      <div class="page-header">
+        <h1>Реализация Технического задания для Яндекс.Деньги</h1>
+        <p>В кажом блоке находится код и реализация, который можно раскрыть.</p>
+      </div>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/zoh/yaMoney-tz/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/zoh/yaMoney-tz/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+      <p>&nbsp;</p>
+
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          1. Напишите функцию разбора query-строки в набор параметров.
+        </div>
+        <script type="text/javascript" src="./src/task.1.js"></script>
+        <div class="panel-body">
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label>Введите query строку</label>      <br>        
+              <input class="form-control" type="text" id="task1-query" value="test=lol&args[]=2&args[]=2&args[]=3&args[]=5">
+            </div>
+            <div class="col-md-6">
+              <b>Результат (Json строка)</b>
+              <pre id="task1-result-query">
+              </pre>
+            </div>
+          </div>
+
+        </div>
+
+        <script type="text/javascript">
+          (function  () {
+            var $query = $('#task1-query');
+
+            $query.on('keyup', run);
+
+            function run () {
+              var params = parseQuery($query.val());
+              $('#task1-result-query').html(JSON.stringify(params));
+            }
+
+            run();
+          })();
+        </script>
+      </div>
+
+
+
+      <div class="panel panel-default" id="task2">
+        <div class="panel-heading">
+          2. Напишите систему сравнения двух наборов параметров форм (включая html-интерфейс). Имена параметров могут повторяться. Система должна отвечать на вопрос: «Что изменилось в параметрах?».
+        </div>
+        <script type="text/javascript" src="./src/task.2.js"></script>
+        
+        <div class="panel-body">
+          <div class="col-md-4">
+            <h4>Форма 1</h4>
+            <form role="form" id="form1">
+              <div class="form-group">
+                <label for="exampleInputEmail1">email</label>
+                <input name="email" class="form-control" value="cro@mail.com">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">password</label>
+                <input name="password" class="form-control" value="Password">
+              </div>
+          </form>
+
+          </div>
+          <div class="col-md-4">
+            <h4>Форма 2</h4>
+            <form role="form" id="form2">
+              <div class="form-group">
+                <label for="exampleInputPassword1">password</label>
+                <input name="password" class="form-control" value="Password345">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">agree</label>
+                <input name="agree" class="form-control" value="yes">
+              </div>
+
+            </form>
+          </div>
+
+          <div class="col-md-4">
+            <b>Сравнение формы1 относительно формы2</b>
+            <br>
+            <ul id="task2-result-compareForms">
+            </ul>
+          </div>
+        </div>
+        <script type="text/javascript">
+        (function() {
+          var form1 = $('#form1');
+          var form2 = $('#form2');
+          var result = $('#task2-result-compareForms');
+
+          $('#task2').on('keyup', run);
+
+          function run () {
+            var res = [].concat(compareForms(form1, form2));
+            result.empty();
+            $.each(res, function (i, item) {
+              $('<li>').html(item).appendTo(result);
+            });
+          }
+
+          run();
+
+        })();
+        </script>
+
+      </div>
+
+
+
+       <div class="panel panel-default" id="task3">
+        <div class="panel-heading">
+          3. Допустим, параметры http-запроса хранятся как свойства объекта. Напишите функцию сериализации параметров в query-строку с добавлением к произвольному url.
+
+        </div>
+        <script type="text/javascript" src="./src/task.3.js"></script>
+        
+        <div class="panel-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <label>Введите url</label>      <br/>
+                <input class="form-control" type="text" id="task3-url" 
+                  value="http://ya.ru/index.php?old_param=123">
+              </p>
+              <p>
+                <label>Введите парамметры json строкой</label>      <br/>
+                <textarea class="form-control" rows=10 id="task3-params">
+{
+    "name": "new name",
+    "age": 33,
+    "args": [1, 2, 3]
+}
+                </textarea>
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <b>Результат (Json строка)</b>
+              <pre id="task3-result-url"></pre>
+            </div>
+          </div>
+
+        </div>
+        <script type="text/javascript">
+          (function () {
+            var url = $('#task3-url');
+            var params = $('#task3-params');
+            var result_url = $('#task3-result-url');
+
+            $('#task3').on('keyup', run);
+
+            function run () {
+                result_url.html(extendUrlByParams(url.val(), JSON.parse(params.val()) ));
+            }
+
+            run();
+
+          })();
+
+        </script>
+
+      </div>
+
+
+       <div class="panel panel-default" id="task3">
+        <div class="panel-heading">
+          4. Реализуйте систему для показа презентаций. Подумайте, как реализовать переключение слайдов и навигацию. Предусмотрите возможность размещения нескольких презентаций на одной странице. Рекомендуется использование jQuery. Код необходимо разместить на одном из специализированных хранилищ: GitHub, Bitbucket, code.google.com и т. д. 
+        </div>
+
+        <div class="panel-body">
+          Ссылка на презенташку <a href="/presentation.html" target="_blank">Вот она!</a>
+          <br>
+
+          (слайды позаимствованы у slideshare :) 
+        </div>
+      </div>
+
+
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Yamoney-tz maintained by <a href="https://github.com/zoh">zoh</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
-</html>
