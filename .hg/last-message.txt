@@ -1,0 +1,4 @@
+task #4 
+ + create main container for presentation
+ + event on switches slides
+ + update present file
