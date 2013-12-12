@@ -1,0 +1,27 @@
+{
+  "name": "yaMoney-tz",
+  "version": "0.1.0",
+  "description": "test task",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "http-server": "~0.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zoh/yaMoney-tz.git"
+  },
+  "author": "zoh",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "e69d7b856642f6b2b097519782f237cac8be3f4c",
+  "bugs": {
+    "url": "https://github.com/zoh/yaMoney-tz/issues"
+  }
+}
